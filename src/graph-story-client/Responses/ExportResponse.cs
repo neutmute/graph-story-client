@@ -7,6 +7,8 @@ namespace GraphStory.Client.Responses
 {
     public class ExportResponse
     {
+        public Instance Instance { get; set; }
+
         public string ExportId { get; set; }
         public int GraphId { get; set; }
         public string GraphName { get; set; }
@@ -18,7 +20,7 @@ namespace GraphStory.Client.Responses
         }
     }
 
-    internal class ExportResponseOuter
+    internal class ExportResponseOuter : BaseResponse
     {
         public ExportResponse Data { get; set; }
     }

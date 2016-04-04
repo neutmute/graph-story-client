@@ -26,7 +26,7 @@ namespace GraphStory.Client
         }
     }
 
-    public class GetInstancesResponse  : BaseResponse
+    public class InstancesResponseOuter  : BaseResponse
     {
         public List<Instance> Data { get; set; }
     }

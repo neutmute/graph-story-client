@@ -20,9 +20,14 @@ namespace GraphStory.Client.Responses
         public string DownloadUrl { get; set; }
         public ExportStatus Status { get; set; }
         public Guid Uuid { get; set; }
+
+        public override string ToString()
+        {
+            return $"Status={Status}, Uuid={Uuid}, DownloadUrl={DownloadUrl}";
+        }
     }
 
-    internal class ExportQueryResponseOuter : BaseResponse
+    internal class ExportStatusResponseOuter : BaseResponse
     {
         public ExportStatusResponse Data { get; set; }
     }
