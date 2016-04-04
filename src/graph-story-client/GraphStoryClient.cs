@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace GraphStory.Client
 {
-    public class GraphStoryClient
+    public class GraphStoryClient : IGraphStoryClient
     {
         private IGraphStoryClientConfig _config;
         const string ApiBaseUrl = "https://console.graphstory.com/public/api/v0";
