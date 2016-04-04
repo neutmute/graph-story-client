@@ -7,6 +7,7 @@ namespace GraphStory.Client
 {
     public enum ExportStatus
     {
+        Unknown,
         Running,
         Compressing,
         Uploading,
