@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GraphStory.Client.Responses;
 
 namespace GraphStory.Client
 {
@@ -25,9 +26,8 @@ namespace GraphStory.Client
         }
     }
 
-    public class GetInstancesResponse
+    public class GetInstancesResponse  : BaseResponse
     {
         public List<Instance> Data { get; set; }
-        public ResponseStatus Status { get; set; }
     }
 }

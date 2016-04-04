@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using GraphStory.Client.Responses;
 using Newtonsoft.Json;
 
 namespace GraphStory.Client
@@ -20,17 +21,43 @@ namespace GraphStory.Client
 
         public List<Instance> GetInstances()
         {
-            GetInstancesResponse result;
+            var result = GetResponse<GetInstancesResponse>("/instances");
+            return result.Data;
+        }
 
+        private TResponse GetResponse<TResponse>(string command) where TResponse : BaseResponse
+        {
+            TResponse result;
+            string rawResult;
             using (var client = ClientFactory())
             {
-                
-                var uri = ApiBaseUrl + "/instances" + $"?api_key={_config.ApiKey}";
-                var rawResult = client.GetStringAsync(uri).Result;
-                result = JsonConvert.DeserializeObject<GetInstancesResponse>(rawResult);
+                var uri = GetFullUri(command);
+                rawResult = client.GetStringAsync(uri).Result;
+                result = JsonConvert.DeserializeObject<TResponse>(rawResult);
             }
 
-            return result.Data;
+            if (result.Status != ResponseStatus.Success)
+            {
+                throw new Exception("Expected success but got: " + rawResult);
+            }
+
+            return result;
+        }
+
+        private string GetFullUri(string command)
+        {
+            var uri = ApiBaseUrl + command + $"?api_key={_config.ApiKey}";
+            return uri;
+        }
+
+        public ExportResponse Export()
+        {
+            return null;
+        }
+
+        public ExportStatusResponse GetExportStatus()
+        {
+            return null;
         }
 
         private HttpClient ClientFactory()
