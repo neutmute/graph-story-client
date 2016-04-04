@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using GraphStory.Client.Responses;
+using GraphStory.Client;
 using Newtonsoft.Json;
 
 namespace GraphStory.Client

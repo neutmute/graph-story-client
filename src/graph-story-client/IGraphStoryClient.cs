@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GraphStory.Client.Responses;
+using GraphStory.Client;
 
 namespace GraphStory.Client
 {

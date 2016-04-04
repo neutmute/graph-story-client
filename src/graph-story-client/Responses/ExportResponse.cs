@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GraphStory.Client;
 
-namespace GraphStory.Client.Responses
+namespace GraphStory.Client
 {
     public class ExportResponse
     {
@@ -16,7 +17,7 @@ namespace GraphStory.Client.Responses
 
         public override string ToString()
         {
-            return $"ExportId='{ExportId}', GraphId='{GraphId}', GraphName='{GraphName}'";
+            return $"ExportId='{ExportId}', GraphId='{GraphId}', GraphName='{GraphName}', StatusUrl='{StatusUrl}'";
         }
     }
 

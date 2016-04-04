@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GraphStory.Client.Responses;
+using GraphStory.Client;
 
 namespace GraphStory.Client
 {
@@ -14,7 +14,7 @@ namespace GraphStory.Client
 
     public class Instance
     {
-        public string Created { get; set; }
+        public DateTimeOffset Created { get; set; }
         public string Host { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace GraphStory.Client
 
         public override string ToString()
         {
-            return $"Id={Id}, Name='{Name}'";
+            return $"Id={Id}, Name='{Name}', Created={Created}, Host='{Host}', WebUi='{WebUi}'";
         }
     }
 
