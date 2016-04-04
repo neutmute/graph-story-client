@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -21,14 +22,29 @@ namespace GraphStory.Client
         {
             GetInstancesResponse result;
 
-            using (var client = new HttpClient())
+            using (var client = ClientFactory())
             {
+                
                 var uri = ApiBaseUrl + "/instances" + $"?api_key={_config.ApiKey}";
                 var rawResult = client.GetStringAsync(uri).Result;
                 result = JsonConvert.DeserializeObject<GetInstancesResponse>(rawResult);
             }
 
             return result.Data;
+        }
+
+        private HttpClient ClientFactory()
+        {
+            var httpClientHandler = new HttpClientHandler();
+            httpClientHandler.Proxy = new WebProxy(_config.ProxyUri, false);
+            httpClientHandler.UseProxy = !string.IsNullOrWhiteSpace(_config.ProxyUri);
+
+            var client = new HttpClient(httpClientHandler)
+            {
+                BaseAddress = new Uri(ApiBaseUrl)
+            };
+
+            return client;
         }
     }
 }

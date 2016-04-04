@@ -8,11 +8,13 @@ namespace GraphStory.Client
     public interface IGraphStoryClientConfig
     {
         string ApiKey { get; set; }   
+        string ProxyUri { get; set; }
     }
 
     public class GraphStoryClientConfig : IGraphStoryClientConfig
     {
         public string ApiKey { get; set; }
-        
+        public string ProxyUri { get; set; }
+
     }
 }
