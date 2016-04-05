@@ -40,7 +40,9 @@ namespace GraphStory.Client
         public ExportStatusResponse GetExportStatus(ExportResponse exportResponse)
         {
             var result = Get<ExportStatusResponseOuter>($"/instances/{exportResponse.Instance.Id}/export/{exportResponse.ExportId}");
-            return result.Data;
+            var output = result.Data.ToPublic();
+            output.Instance = exportResponse.Instance;
+            return output;
         }
 
         private TResponse Get<TResponse>(string command) where TResponse : BaseResponse
@@ -57,7 +59,7 @@ namespace GraphStory.Client
         {
             TResponse result;
             string rawResult;
-            using (var client = ClientFactory())
+            using (var client = CreateHttpClient())
             {
                 var uri = GetFullUri(command);
                 rawResult = clientAction(client, uri);
@@ -90,16 +92,16 @@ namespace GraphStory.Client
             return uri;
         }
 
-        private HttpClient ClientFactory()
+        /// <summary>
+        /// Reuse this for the S3 transfer
+        /// </summary>
+        public HttpClient CreateHttpClient()
         {
             var httpClientHandler = new HttpClientHandler();
             httpClientHandler.Proxy = new WebProxy(_config.ProxyUri, false);
             httpClientHandler.UseProxy = !string.IsNullOrWhiteSpace(_config.ProxyUri);
 
-            var client = new HttpClient(httpClientHandler)
-            {
-                BaseAddress = new Uri(ApiBaseUrl)
-            };
+            var client = new HttpClient(httpClientHandler);
 
             return client;
         }

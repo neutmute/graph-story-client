@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using GraphStory.Client;
 
 namespace GraphStory.Client
@@ -8,5 +9,7 @@ namespace GraphStory.Client
         List<Instance> GetInstances();
         ExportResponse Export(Instance instance);
         ExportStatusResponse GetExportStatus(ExportResponse exportResponse);
+
+        HttpClient CreateHttpClient();
     }
 }
