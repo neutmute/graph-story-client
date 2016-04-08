@@ -23,7 +23,7 @@ namespace GraphStory.Client
 
         public override string ToString()
         {
-            return $"Status={Status}, Uuid={Uuid}, DownloadUrl={DownloadUrl}";
+            return $"Status={Status}, Uuid={Uuid}, DownloadUrl='{DownloadUrl}'";
         }
 
         public void Absorb(ExportStatusResponseCore source)
