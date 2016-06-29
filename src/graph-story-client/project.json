@@ -2,10 +2,11 @@
   "version": "1.0.0-*",
   "description": "graph-story-client",
   "authors": [ "neutmute" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-
+  "packOptions": {
+    "tags": [ "" ],
+    "projectUrl": "",
+    "licenseUrl": ""
+  },
   "dependencies": {
     "Newtonsoft.Json": "6.0.8"
   },
